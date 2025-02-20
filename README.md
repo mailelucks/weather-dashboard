@@ -1,4 +1,4 @@
-# mac n cheese
+# Weather Dashboard
 
 ## Getting Started
 
