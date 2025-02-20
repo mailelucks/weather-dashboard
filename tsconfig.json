@@ -1,0 +1,39 @@
+{
+  "compilerOptions": {
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "jsx": "preserve",
+    "incremental": true, // Improves build performance
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "noEmit": true, // Correct for Next.js
+    "strict": true, // Enables all strict type checks
+    "skipLibCheck": true, // Skips type checking of node_modules
+    "esModuleInterop": true, // Better module interop
+    "moduleResolution": "bundler", // Correct for modern bundlers
+    "resolveJsonModule": true, // Allows importing JSON
+    "isolatedModules": true, // Required for proper tree-shaking
+    "noImplicitAny": true, // Catch implicit any types
+    "strictNullChecks": true, // Better null/undefined handling
+    "noUnusedLocals": true, // Catch unused variables
+    "noUnusedParameters": true, // Catch unused parameters
+    "noImplicitReturns": true, // Ensure all code paths return
+    "noFallthroughCasesInSwitch": true, // Safer switch statements
+    "forceConsistentCasingInFileNames": true, // Prevent case sensitivity issues
+    "allowUnreachableCode": false, // Catch dead code
+    "exactOptionalPropertyTypes": true, // Stricter optional properties
+    "noImplicitOverride": true, // Require override keyword
+    "verbatimModuleSyntax": true, // Stricter import/export
+    "allowJs": true,
+    "module": "esnext",
+    "target": "ES2017"
+  },
+  // Keep these - they're correct
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
+}
