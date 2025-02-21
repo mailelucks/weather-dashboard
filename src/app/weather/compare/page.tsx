@@ -47,7 +47,7 @@ const CompareWeatherPage = () => {
     .filter((entry) => entry.data !== null);
 
   return (
-    <section className="container mx-auto p-4">
+    <section className="container mx-auto py-4">
       <h1 className="text-2xl font-bold mb-4">Compare Cities</h1>
       <SearchBar mode="compare" />
       <CompareCityTempLineChart

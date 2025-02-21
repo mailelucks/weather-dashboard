@@ -68,7 +68,12 @@ const CompareCityTempLineChart = ({
             <LineChart data={chartData}>
               <XAxis dataKey="time" />
               <YAxis
-                label={{ value: '°C', angle: -90, position: 'insideLeft' }}
+                label={{
+                  value: '°F',
+                  angle: -90,
+                  position: 'insideLeft',
+                  offset: 5,
+                }}
               />
               <Tooltip />
               <Legend />

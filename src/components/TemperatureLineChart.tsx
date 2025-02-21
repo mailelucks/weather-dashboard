@@ -53,7 +53,7 @@ const TemperatureLineChart = ({ forecastData }: TemperatureLineChartProps) => {
               value: unit === 'C' ? '°Celsius' : '°Farenheit',
               angle: -90,
               position: 'insideLeft',
-              offset: 0,
+              offset: 5,
             }}
             padding={{ top: 20, bottom: 20 }}
           />

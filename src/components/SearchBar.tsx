@@ -84,8 +84,10 @@ const SearchBar = ({ mode = 'default' }: SearchBarProps) => {
             Search
           </Button>
         </form>
-        <div className="text-red-500 text-sm mt-2 min-h-10">
-          {errors.query && <p>{errors.query.message}</p>}
+        <div className="text-sm mt-2 min-h-10">
+          {errors.query && (
+            <p className="text-red-500 ">{errors.query.message}</p>
+          )}
           {isComparePage && selectedCities.length >= 3 && (
             <p>Remove a selected city to search for more.</p>
           )}
