@@ -13,7 +13,7 @@ import {
 const WeatherConditions = (weather: WeatherData) => {
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-6">
-      <p className="text-5xl flex items-center gap-2">
+      <p className="text-5xl flex items-center">
         <ThermometerSun className="text-yellow-500" size={50} />
         {weather.temp}°F
       </p>
