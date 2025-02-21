@@ -1,64 +1,29 @@
-'use client';
-
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { useWeatherStore } from '@/store/useWeatherStore';
-import { type WeatherData } from '@/types';
+// src/components/WeatherSummaryCard.tsx
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui';
 
 interface WeatherCardProps {
-  city: string;
-  isCompareMode?: boolean;
+  title: string;
+  content: React.ReactNode;
 }
 
-const WeatherCard = ({ city, isCompareMode = false }: WeatherCardProps) => {
-  const { weatherData, removeCity } = useWeatherStore();
-  const pathname = usePathname();
-  const isCurrentCity = pathname === `/weather/${city}`;
-  const data: WeatherData | undefined = weatherData[city];
+function formatCamelCaseString(str: string) {
+  return str
+    .replace(/([A-Z])/g, ' $1')
+    .replace(/^./, (char) => char.toUpperCase())
+    .split(' ')
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+}
 
-  if (!data) {
-    return <div className="w-full h-32 bg-gray-200 animate-pulse rounded-md" />;
-  }
-
+const WeatherSummaryCard = ({ title, content }: WeatherCardProps) => {
   return (
-    <>
-      {!isCurrentCity ? (
-        <Link
-          href={`/weather/${city}`}
-          className="block p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow bg-white group">
-          <CardHeader>
-            <CardTitle>
-              {data.city}, {data.country}
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="flex flex-col gap-2">
-            <p>Temperature: {data.temp}°C</p>
-            <p className="text-blue-500 group-hover:underline">Learn More</p>
-          </CardContent>
-        </Link>
-      ) : (
-        <Card className="p-4">
-          <CardHeader>
-            <CardTitle>{data.city}</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p>Temperature: {data.temp}°C</p>
-            <p>Humidity: {data.humidity}%</p>
-            <p>Wind Speed: {data.windSpeed} m/s</p>
-            <p>Conditions: {data.conditions}</p>
-          </CardContent>
-        </Card>
-      )}
-      {isCompareMode && (
-        <button
-          onClick={() => removeCity(city)}
-          className="text-red-500 mt-2 w-full">
-          Remove from Comparison
-        </button>
-      )}
-    </>
+    <Card className="p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow bg-white dark:bg-gray-900">
+      <CardHeader>
+        <CardTitle className="text-l">{formatCamelCaseString(title)}</CardTitle>
+      </CardHeader>
+      <CardContent className="flex flex-col gap-2">{content}</CardContent>
+    </Card>
   );
 };
 
-export default WeatherCard;
+export default WeatherSummaryCard;

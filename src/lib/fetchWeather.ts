@@ -8,16 +8,21 @@ export const fetchWeatherByCity = async (
 ): Promise<WeatherData | null> => {
   try {
     const response = await fetch(
-      `${BASE_URL}/weather?q=${city}&appid=${API_KEY}&units=metric`
+      `${BASE_URL}/weather?q=${city}&appid=${API_KEY}&units=imperial`
     );
     if (!response.ok) {
       throw new Error('City not found or API error');
     }
 
     const data: OpenWeatherResponse = await response.json();
+
+  
     return {
       city: data.name,
       country: data.sys.country,
+      icon: data.weather[0].icon,
+      sunrise: data.sys.sunrise,
+      sunset: data.sys.sunset,
       temp: data.main.temp,
       humidity: data.main.humidity,
       windSpeed: data.wind.speed,

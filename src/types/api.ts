@@ -1,9 +1,14 @@
 export type OpenWeatherResponse = {
-  name: string;
-  sys: { country: string };
   main: { temp: number; humidity: number };
+  name: string;
   wind: { speed: number };
-  weather: { description: string }[];
+  sys: { country: string };
+  weather: {
+    description: string;
+    icon: string;
+    sunrise: number;
+    sunset: number;
+  }[];
 };
 
 export type OpenWeatherForecastResponse = {

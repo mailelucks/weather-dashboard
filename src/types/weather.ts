@@ -1,15 +1,29 @@
 export type WeatherData = {
   city: string;
-  country: string;
-  temp: number;
-  humidity: number;
-  windSpeed: number;
   conditions: string;
+  country: string;
+  sunrise: number;
+  sunset: number;
+  icon: string;
+  humidity: number;
+  temp: number;
+  windSpeed: number;
 };
 
 export type ForecastData = {
-  time: string;
-  temp: number;
+  city: string;
+  conditions: string;
   humidity: number;
+  temp: number;
+  time: string;
   windSpeed: number;
 };
+
+export type BarChartVariants = Partial<
+  Pick<ForecastData, 'humidity' | 'windSpeed'>
+>;
+
+export enum BarChartVariant {
+  Humidity = 'humidity',
+  WindSpeed = 'windSpeed',
+}

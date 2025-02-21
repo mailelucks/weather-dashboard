@@ -8,20 +8,27 @@ export const fetchWeatherForecast = async (
 ): Promise<ForecastData[] | null> => {
   try {
     const response = await fetch(
-      `${BASE_URL}/forecast?q=${city}&appid=${API_KEY}&units=metric`
+      `${BASE_URL}/forecast?q=${city}&appid=${API_KEY}&units=imperial`
     );
     if (!response.ok) {
       throw new Error('Forecast data not found');
     }
 
     const data: OpenWeatherForecastResponse = await response.json();
+    return data.list.map((entry) => {
+      const condition = entry.weather.find((w) => w.description) || {
+        description: 'Unknown',
+      };
 
-    return data.list.map((entry) => ({
-      time: entry.dt_txt,
-      temp: entry.main.temp,
-      humidity: entry.main.humidity,
-      windSpeed: entry.wind.speed,
-    }));
+      return {
+        city,
+        conditions: condition.description,
+        humidity: entry.main.humidity,
+        temp: entry.main.temp,
+        time: entry.dt_txt,
+        windSpeed: entry.wind.speed,
+      };
+    });
   } catch (error) {
     console.error('Forecast fetch error:', error);
     return null;
