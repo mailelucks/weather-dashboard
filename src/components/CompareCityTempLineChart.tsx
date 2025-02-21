@@ -10,6 +10,7 @@ import {
   ResponsiveContainer,
   Legend,
 } from 'recharts';
+import { type ForecastData } from '@/types';
 
 const COLORS = [
   'var(--color-red-600)',
@@ -34,20 +35,22 @@ const CompareCityTempLineChart = ({
     return <p className="w-full">No valid forecast data available.</p>;
 
   const chartData =
-    firstValidCity.data?.slice(0, 8).map((entry, index) => {
-      const time = dayjs(entry.time).format('HH:mm');
+    firstValidCity.data
+      ?.slice(0, 8)
+      .map((entry: ForecastData, index: number) => {
+        const time = dayjs(entry.time).format('HH:mm');
 
-      return {
-        time,
-        ...forecastData.reduce(
-          (acc: Record<string, number | null>, { city, data }) => {
-            acc[city] = data?.[index]?.temp ?? null;
-            return acc;
-          },
-          {}
-        ),
-      };
-    }) ?? [];
+        return {
+          time,
+          ...forecastData.reduce(
+            (acc: Record<string, number | null>, { city, data }) => {
+              acc[city] = data?.[index]?.temp ?? null;
+              return acc;
+            },
+            {}
+          ),
+        };
+      }) ?? [];
 
   return (
     <div className="w-full">
