@@ -12,46 +12,46 @@ import {
 
 const WeatherConditions = (weather: WeatherData) => {
   return (
-    <>
-      <p className="text-5xl flex items-center gap-2 mb-8">
+    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-6">
+      <p className="text-5xl flex items-center gap-2">
         <ThermometerSun className="text-yellow-500" size={50} />
         {weather.temp}°F
       </p>
-      <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-6">
+      <ul className="grid grid-cols-1 gap-4">
         {weather.temp < 65 && weather.temp > 50 && (
           <li className="text-lg flex items-center gap-2">
-            <FlameKindling className="text-gray-500" size={20} />
+            <FlameKindling className="text-gray-500" size={30} />
             Sweater Weather
           </li>
         )}
         {weather.temp > 90 && (
           <li className="text-lg flex items-center gap-2">
-            <Flame className="text-red-500" size={20} />
+            <Flame className="text-red-500" size={30} />
             Scorching Hot! Stay Hydrated
           </li>
         )}
         {weather.windSpeed > 15 && (
           <li className="text-lg flex items-center gap-2">
-            <Wind className="text-gray-400" size={20} />
+            <Wind className="text-gray-300" size={30} />
             Windy! Hold Onto Your Hat
           </li>
         )}
         {weather.temp < 32 && (
           <li className="text-lg flex items-center gap-2">
-            <ThermometerSnowflake className="text-blue-500" size={20} />
+            <ThermometerSnowflake className="text-blue-500" size={30} />
             Freezing Cold – Stay Warm!
           </li>
         )}
         <li className="text-lg flex items-center gap-2">
-          <Sun className="text-orange-500" size={20} />
+          <Sun className="text-orange-500" size={30} />
           Sunrise at {convertUnixToImperialTime(weather.sunrise)}
         </li>
         <li className="text-lg flex items-center gap-2">
-          <Sunset className="text-orange-500" size={20} />
+          <Sunset className="text-orange-500" size={30} />
           Sunset at {convertUnixToImperialTime(weather.sunset)}
         </li>
       </ul>
-    </>
+    </div>
   );
 };
 
